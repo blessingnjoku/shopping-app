@@ -10,11 +10,13 @@
 │   │   └── [id].js               ← Product Details screen
 │
 │   ├── cart.js                   ← Cart screen (can be full screen or modal)
-│   └── modal.js                  ← For bottom sheet modals 
+│   
 │
 ├── /components
 │   ├── CustomButton.js           ← Reusable button
 │   └── ProductCard.js            ← Reusable product display
+    └── BottomBar.js               ← custom bottom tab
+
 │
 ├── /data
 │   └── products.js               ← Static product data
