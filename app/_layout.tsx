@@ -19,8 +19,10 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="home" options={{ headerShown: false }} />
+      <Stack screenOptions={{ headerShown: false }} >
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="home/index" options={{ title:"HomeScreen"}} />
+
         <Stack.Screen name="+not-found" />
       </Stack>
       <StatusBar style="auto" />
