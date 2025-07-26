@@ -1,13 +1,17 @@
 
+import Button from '@/components/app-button/Btn';
+import { router } from 'expo-router';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StyleSheet, Text } from 'react-native';
 
 
 const StartScreen = () => {
+
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <Text>StartScreen</Text>
-        </View>
+            <Button title="Go Shopping" onpress={()=>router.push('/home')}/>
+        </SafeAreaView>
     );
 };
 

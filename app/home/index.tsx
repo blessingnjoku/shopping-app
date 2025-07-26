@@ -1,15 +1,23 @@
+import BottomBar from '@/components/BottomBar'
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { SafeAreaView, StyleSheet, Text } from 'react-native'
 
 
 const HomeScreen = () => {
   return (
-    <View>
-      <Text>index</Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+   <Text>Welcome to Home!</Text>
+   <BottomBar/>
+    </SafeAreaView>
   )
 }
 
 export default HomeScreen
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        position: 'relative',
+      },
+     
+})
