@@ -1,5 +1,6 @@
 import BottomBar from "@/components/BottomBar";
 import ProductCard from "@/components/cards/ProductCard";
+import { useLiked } from "@/components/context/LikedContext";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import EvilIcons from "@expo/vector-icons/EvilIcons";
 import React, { useState } from "react";
@@ -9,7 +10,7 @@ import { product } from "../../data/product";
 const HomeScreen = () => {
   const [search, setSearch] = useState("");
 
-  const [favorites, setFavorites] = useState<string[]>([]);
+  const { favorites, toggleFavorite } = useLiked();
 
   // search
   const filteredData = product.filter((item) =>
@@ -17,11 +18,11 @@ const HomeScreen = () => {
   );
 
 
-  const toggleFavorite = (id: string) => {
-    setFavorites((prev) =>
-      prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id]
-    );
-  };
+  // const toggleFavorite = (id: string) => {
+  //   setFavorites((prev) =>
+  //     prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id]
+  //   );
+  // };
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
