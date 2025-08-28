@@ -1,5 +1,6 @@
 
 import Button from '@/components/app-button/Btn';
+import { useThemeColors } from '@/components/context/ThemeContext';
 import { router } from 'expo-router';
 import React from 'react';
 import { ImageBackground, StyleSheet, Text, View } from 'react-native';
@@ -7,9 +8,9 @@ import { ImageBackground, StyleSheet, Text, View } from 'react-native';
 
 
 const StartScreen = () => {
-
+  const { colors} = useThemeColors();
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, {backgroundColor:colors.background}]}>
          <ImageBackground style={styles.background} source={require('../assets/images/strat1.jpg')} resizeMode='cover'>
          <View style={styles.containerContent}><Text style={styles.content}>The Future Looks Bright </Text></View>
 
@@ -28,7 +29,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#c5c5c5',
+       
     },
     containerContent:{
         paddingVertical:60,

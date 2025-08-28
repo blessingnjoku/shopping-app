@@ -2,6 +2,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useThemeColors } from "../context/ThemeContext";
 interface ProductProp {
   item: any;
   isFavorite: boolean;
@@ -10,19 +11,19 @@ interface ProductProp {
 
 const ProductCard = ({ item, isFavorite, onToggleFavorite }: ProductProp) => {
   const router = useRouter();
+    const { colors } = useThemeColors();
   return (
     <TouchableOpacity
-      style={styles.card}
+      style={[styles.card, { backgroundColor: colors.card }]}
       onPress={() => router.push(`/home/${item.id}`)}
-      
     >
       <View style={styles.topBar}>
-        <Text style={styles.text}>{item.name}</Text>
+        <Text style={[styles.text, { color: colors.text }]}>{item.name}</Text>
         <TouchableOpacity style={styles.heart} onPress={onToggleFavorite}>
           <Ionicons
             name={isFavorite ? "heart" : "heart-outline"}
             size={30}
-            color={isFavorite ? "red" : "black"}
+            color={isFavorite ? "red" : colors.icon}
           />
         </TouchableOpacity>
       </View>
@@ -30,8 +31,12 @@ const ProductCard = ({ item, isFavorite, onToggleFavorite }: ProductProp) => {
         <Image source={item.image} style={styles.image} />
       </View>
       <View style={styles.textBox}>
-        <Text style={styles.disPrice}>{item.discountPrice}</Text>
-        <Text style={styles.price}>${item.price.toFixed(2)}</Text>
+        <Text style={[styles.disPrice, { color: colors.text }]}>
+          {item.discountPrice}
+        </Text>
+        <Text style={[styles.price, { color: colors.text }]}>
+          ${item.price.toFixed(2)}
+        </Text>
       </View>
     </TouchableOpacity>
   );
@@ -42,7 +47,6 @@ export default ProductCard
 const styles = StyleSheet.create({
   card: {
     flex: 1,
-    backgroundColor: "#fff",
     margin: 5,
     borderRadius: 18,
     paddingVertical: 35,
