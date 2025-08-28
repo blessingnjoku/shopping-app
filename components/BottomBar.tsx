@@ -2,19 +2,27 @@ import { Ionicons } from "@expo/vector-icons"
 import { router } from "expo-router"
 import React from 'react'
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
+import BtnToggle from "./app-button/BtnToggle"
+import { useThemeColors } from "./context/ThemeContext"
 const BottomBar = () => {
+    const { colors, toggleTheme } = useThemeColors();
   return (
-    <View style={styles.container}>
-    <TouchableOpacity>
-        <Ionicons name='grid-outline' size={34} color='black'/>
-     </TouchableOpacity>
-     <Image source={require('../assets/images/logo.png')} style={styles.img}  />
-
-     <TouchableOpacity>
-        <Ionicons name='cart-outline' size={34} color='black' onPress={()=>router.push('/cart')}/>
-     </TouchableOpacity>
+    <View style={[styles.container, { backgroundColor: colors.card }]}>
+      <TouchableOpacity>
+        <Ionicons name="grid-outline" size={34} color={colors.icon} />
+      </TouchableOpacity>
+      <Image source={require("../assets/images/logo.png")} style={styles.img} />
+      <BtnToggle />
+      <TouchableOpacity>
+        <Ionicons
+          name="cart-outline"
+          size={34}
+          color={colors.icon}
+          onPress={() => router.push("/cart")}
+        />
+      </TouchableOpacity>
     </View>
-  )
+  );
 }
 
 export default BottomBar

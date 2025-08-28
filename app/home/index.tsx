@@ -1,6 +1,7 @@
 import BottomBar from "@/components/BottomBar";
 import ProductCard from "@/components/cards/ProductCard";
 import { useLiked } from "@/components/context/LikedContext";
+import { useThemeColors } from "@/components/context/ThemeContext";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import EvilIcons from "@expo/vector-icons/EvilIcons";
 import React, { useState } from "react";
@@ -9,7 +10,7 @@ import { product } from "../../data/product";
 
 const HomeScreen = () => {
   const [search, setSearch] = useState("");
-
+  const { colors } = useThemeColors();
   const { favorites, toggleFavorite } = useLiked();
 
   // search
@@ -18,19 +19,14 @@ const HomeScreen = () => {
   );
 
 
-  // const toggleFavorite = (id: string) => {
-  //   setFavorites((prev) =>
-  //     prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id]
-  //   );
-  // };
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
       <View style={styles.header}>
         <View style={styles.headerTextBox}>
-          <Text style={{ fontSize: 95, fontWeight: "800", color: "#022d0a" }}>
+          <Text style={{ fontSize: 95, fontWeight: "800", color: colors.text }}>
             16
           </Text>
-          <Text style={styles.headerText}>New Arrivals</Text>
+          <Text style={[styles.headerText,  {color: colors.text} ]}>New Arrivals</Text>
         </View>
         <View style={styles.iconBox}>
           <AntDesign name="filter" size={24} color="black" />
@@ -44,6 +40,7 @@ const HomeScreen = () => {
           onChangeText={setSearch}
         />
       </View>
+    
 
       <FlatList
         style={styles.Cardcontainer}
@@ -58,6 +55,7 @@ const HomeScreen = () => {
           />
         )}
       />
+
       <BottomBar />
     </SafeAreaView>
   );
@@ -78,7 +76,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
     paddingBottom: 15,
     paddingHorizontal: 20,
-
   },
   headerTextBox: {
     width: "45%",
@@ -91,15 +88,14 @@ const styles = StyleSheet.create({
     fontWeight: "800",
     lineHeight: 40,
     marginLeft: 10,
-    color: "#022d0a",
   },
   iconBox: {
     width: 50,
     height: 50,
     borderRadius: "50%",
-    backgroundColor: "#fff",
     paddingHorizontal: 13,
     paddingVertical: 13,
+    backgroundColor: "#fff",
   },
   searchBox: {
     width: "90%",
@@ -110,12 +106,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginHorizontal: 20,
     paddingHorizontal: 20,
-    marginBottom:20
-
+    marginBottom: 20,
   },
-  Cardcontainer:{
-  
-    paddingHorizontal:20,
-    paddingTop:8
-  }
+  Cardcontainer: {
+    paddingHorizontal: 20,
+    paddingTop: 8,
+  },
 });
